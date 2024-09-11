@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'idea'
+    id "net.serenity-bdd.serenity-gradle-plugin" version "4.0.12"
+    id "io.spring.dependency-management" version "1.1.0"
+}
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+defaultTasks 'clean', 'test', 'aggregate'
+group 'com.co.grupo_exito'
+version '1.0-SNAPSHOT'
+repositories {
+    mavenCentral()
+}
+
+ext {
+    serenityVersion = '4.1.0'
+    restAssuredVersion = '4.1.0'
+    serenityCucumberVersion = '4.1.0'
+    junitVersion = '5.9.2'
+    jdbiVersion = '3.37.1'
+}
+
+dependencies {
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.6.4'
+    implementation "net.serenity-bdd:serenity-core:${serenityVersion}"
+    implementation group: 'net.serenity-bdd', name: 'serenity-junit',                version: serenityVersion
+    implementation "net.serenity-bdd:serenity-rest-assured:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    implementation group: 'net.serenity-bdd', name: 'serenity-assertions',           version: serenityVersion
+    implementation "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}"
+    implementation group: 'net.serenity-bdd', name: 'serenity-cucumber', version: serenityCucumberVersion
+    implementation 'net.serenity-bdd:serenity-single-page-report:4.0.12'
+    implementation 'net.serenity-bdd:serenity-ensure:4.0.12'
+    implementation group: 'org.jdbi', name: 'jdbi3-core', version: '3.41.1'
+    implementation group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '12.3.0.jre17-preview'
+    implementation group: 'org.apache.poi', name: 'poi', version: '5.2.5'
+    implementation 'org.apache.poi:poi-ooxml:5.2.5'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.awaitility:awaitility:4.2.0'
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    implementation 'ch.qos.logback:logback-classic:1.4.11'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
+    implementation group: 'org.json', name: 'json', version: '20230618'
+    implementation group: 'com.rabbitmq', name: 'amqp-client', version: '5.18.0'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.12.0'
+    implementation 'org.jsoup:jsoup:1.17.2'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    implementation group: 'net.serenity-bdd', name: 'serenity-assertions', version: serenityVersion
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitVersion
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitVersion
+
+
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
